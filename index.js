@@ -44,6 +44,8 @@ app.get('/chatgpt',async function (req, res) {
 
 app.get('/photoUrl',async function (req, res) {
 
+    try  {
+
     let word = req.query.word
     console.log('reqphotourl:',req.query)
 
@@ -52,9 +54,20 @@ app.get('/photoUrl',async function (req, res) {
 
     const data = await response.json();
 
+    if (!data.results[0]){
+         console.log("image not found")
+         return res.json("https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=");
+    }
+
+    if(data.results[0].urls.small){
     console.log("photo url" , data.results[0].urls.small)
 
     res.json(data.results[0].urls.small);
+    }
+   }
+    catch (err) {
+        console.log("Error",err)
+    }
 });
 
 
