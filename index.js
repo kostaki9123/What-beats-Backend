@@ -49,16 +49,6 @@ app.get('/photoUrl',async function (req, res) {
     console.log('reqphotourl:',req.query)
 
 
-
-    const res = await openai.images.generate({
-        model: "dall-e-3",
-        prompt: "a white siamese cat",
-        n: 1,
-        size: "1024x1024",
-      });
-
-
-
     let url = `https://api.unsplash.com/search/photos?query=${word}&page=1&per_page=10&client_id=${process.env.VITE_PHOTO_KEY}`;
     const response = await fetch(url);
 
