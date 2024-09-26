@@ -3,7 +3,6 @@ const cors = require('cors');
 require('dotenv').config();
 
 
-
 var app = express();
 
 app.use(cors());
@@ -13,7 +12,7 @@ app.get('/chatgpt',async function (req, res) {
   
   let InputValue = req.query.current
   
-  let phrase =  `Tell me if the current word beats previous one and why(pretend that is a real rock/paper/scissors game),and each element photo url
+  let phrase =  `Tell me if the current word beats previous one and why(pretend that is a real rock/paper/scissors game but using any word),and each element photo url
   respone like api respone shcema 
     previous : ${previous},
     previousPhotoUrl :    ,
@@ -48,6 +47,17 @@ app.get('/photoUrl',async function (req, res) {
 
     let word = req.query.word
     console.log('reqphotourl:',req.query)
+
+
+
+    const res = await openai.images.generate({
+        model: "dall-e-3",
+        prompt: "a white siamese cat",
+        n: 1,
+        size: "1024x1024",
+      });
+
+
 
     let url = `https://api.unsplash.com/search/photos?query=${word}&page=1&per_page=10&client_id=${process.env.VITE_PHOTO_KEY}`;
     const response = await fetch(url);
