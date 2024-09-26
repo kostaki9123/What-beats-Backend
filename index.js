@@ -13,7 +13,7 @@ app.get('/chatgpt',async function (req, res) {
   
   let InputValue = req.query.current
   
-  let phrase =  `Tell me if the current word beats previous one and why(be difficult to be beatten),and each element photo url
+  let phrase =  `Tell me if the current word beats previous one and why(be hard in your critisize),and each element photo url
   respone like api respone shcema 
     previous : ${previous},
     previousPhotoUrl :    ,
